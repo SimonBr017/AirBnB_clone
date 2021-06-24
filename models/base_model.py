@@ -4,7 +4,7 @@ Module BaseModel class
 """
 import uuid
 from datetime import datetime
-import models
+
 
 class BaseModel:
     """
@@ -21,7 +21,7 @@ class BaseModel:
         """
         Return a string repr of BaseModel class
         """
-        return ("[{}] ({}) {}".format(self.__class__.name, self.id, self.__dict__))
+        return ("[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__))
     
     def save(self):
         """
@@ -33,7 +33,14 @@ class BaseModel:
         """
         returns a dictionary containing all keys/values of __dict__ of the instance
         """
-        new_dict = self.__dict__.copy()
+        new_dict = {}
         new_dict["__class__"] = self.__class__.__name__
-        new_dict["updated_at"] = self.updated_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
-        new_dict["created_at"] = self.created_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
+        
+        for key, value in self.__dict__.items():
+            if not value:
+                continue
+            if key == "created_at" or key == "updated_at":
+                new_dict[key] = value.strftime("%Y-%m-%dT%H:%M:%S.%f")
+            else:
+                new_dict[key] = value
+        return (new_dict)
