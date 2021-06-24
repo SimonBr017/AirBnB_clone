@@ -40,3 +40,26 @@ class BaseModelTest(unittest.TestCase):
             to_dict function have documentation
         """
         self.assertGreater(len(BaseModel.to_dict.__doc__), 0)
+
+    def testSave(self):
+        """
+            Test save function
+        """
+        b1 = BaseModel()
+        b1.name = "Holberton"
+        b1.my_number = 89
+        b1.my_wrong_test = None
+        b1.save()
+        self.assertGreater(b1.updated_at, b1.created_at)
+        self.assertDictEqual(
+            b1.to_dict(),
+            {
+                '__class__': 'BaseModel',
+                'created_at': b1.created_at.strftime("%Y-%m-%dT%H:%M:%S.%f"),
+                'id': b1.id,
+                'my_number': 89,
+                'name': "Holberton",
+                'updated_at': b1.updated_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
+                
+            }
+        )
