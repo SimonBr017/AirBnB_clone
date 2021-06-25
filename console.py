@@ -2,12 +2,11 @@
 """
 entry point of the command interpreter.
 """
-
 import cmd
 import models
 
 
-class HBNBCommand(cmd, Cmd):
+class HBNBCommand(cmd.Cmd):
     """
     interpreter command
     """
@@ -19,6 +18,13 @@ class HBNBCommand(cmd, Cmd):
     def call_quit(self, arg):
         raise SystemExit
     
-
+    def empty_line(self):
+        pass
+    
+    def help_EOF(self):
+        print("EOF command to exit the program")
+    def help_quit(self):
+        print("Quit command to exit the program")
+    
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
