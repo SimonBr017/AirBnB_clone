@@ -42,7 +42,7 @@ class FileStorage:
         try:
             from models.base_model import BaseModel
             with open(FileStorage.__file_path, "r") as file:
-                for key, value in json.load(file).items():
+                for key, value in (json.load(file)).items():
                     FileStorage.__objects[key] = eval(value['__class__'])(**value)
 
         except Exception:
