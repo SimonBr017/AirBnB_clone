@@ -20,7 +20,7 @@ class FileStorage:
 
     def new(self, obj):
         """
-        sets in __objects the obj with 
+        sets in __objects the obj with
         key <obj class name>.id
         """
         FileStorage.__objects[type(obj).__name__ + "." + obj.id] = obj
@@ -43,7 +43,8 @@ class FileStorage:
             from models.base_model import BaseModel
             with open(FileStorage.__file_path, "r") as file:
                 for key, value in json.load(file).items():
-                    FileStorage.__objects[key] = eval(value['__class__'])(**value)
+                    class_name = eval(value['__class__'])(**value)
+                    FileStorage.__objects[key] = class_name
 
         except Exception:
             pass
