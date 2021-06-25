@@ -12,19 +12,19 @@ class HBNBCommand(cmd.Cmd):
     """
     prompt = '(hbnb)'
     
-    def call_EOF(self, arg):
+    def do_EOF(self, arg):
         """exit the program"""
         raise SystemExit
-    def call_quit(self, arg):
+    def do_quit(self, arg):
         raise SystemExit
     
-    def empty_line(self):
+    def emptyline(self):
         pass
     
     def help_EOF(self):
-        print("EOF command to exit the program")
+        print("EOF command to exit the program\n")
     def help_quit(self):
-        print("Quit command to exit the program")
+        print("Quit command to exit the program\n")
     
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
