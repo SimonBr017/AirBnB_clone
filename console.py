@@ -243,17 +243,12 @@ class HBNBCommand(cmd.Cmd):
             to verify and catch or not the adequate function.
         """
         try:
-            regex = "^(.*)\.(.*)\((.*)\)$"
-            regex_prog = re.compile(regex)
-            res = regex_prog.findall(line)
-            args = res[0]
+            args = self.__get_arguments(line)
             if args and args[0] in self.__classes:
                 # arg[0]= className, args[1]=command...
                 className, command, arguments = args
                 if command in self.__commands:
-                    arguments = arguments.replace('"', '')
-                    arguments = arguments.replace(',', ' ')
-                    arguments = arguments.replace(', ', ' ')
+                    arguments = self.__clean_parameter(arguments)
                     if len(arguments) > 0:
                         arguments = "{} {}".format(className, arguments)
                     else:
@@ -261,48 +256,56 @@ class HBNBCommand(cmd.Cmd):
                     eval("self.do_{}('{}')".format(command, arguments))
                     return
                 elif command == 'update':
-                    paramet = self.__Get_paramet(arguments)
-                    id = paramet[0]
+                    paramet = self.__get_paramet(arguments)
+                    id = self.__clean_parameter(paramet[0])
+                    print(paramet[1])
                     if self.__Verif_json(paramet[1]):
                         for att, value in json.loads(paramet[1]).items():
                             args = "{} {} {}".format(id, att, value)
-                            formatCommande = self.__format_command(className, command, arguments)
+                            formatCommande = self.__format_command(className, command, args)
                             eval(formatCommande)
                         return
-                    """
                     else:
-                    arguments = arguments.replace('"', '')
-                    arguments = arguments.replace(',', ' ')
-                    arguments = arguments.replace(', ', ' ')
-                    if len(arguments) > 0:
-                        arguments = "{} {}".format(className, arguments)
-                    else:
-                        arguments = "{}".format(className)
-                    eval("self.do_{}('{}')".format(command, arguments))
-                    return
-                    """
+                        arguments = self.__clean_parameter(arguments)
+                        if len(arguments) > 0:
+                            arguments = "{} {}".format(className, arguments)
+                        else:
+                            arguments = "{}".format(className)
+                        eval("self.do_{}('{}')".format(command, arguments))
+                        return
                     
         except:
             return super().default(line)
+
+    def __get_arguments(self, line):
+        regex = "^(.*)\.(.*)\((.*)\)$"
+        regex_prog = re.compile(regex)
+        res = regex_prog.findall(line)
+        return res[0]
+
+    def __clean_parameter(self, parameter):
+        parameter = parameter.replace('"', '')
+        parameter = parameter.replace(',', ' ')
+        parameter = parameter.replace(', ', ' ')
+        return parameter
         
     def __format_command(self, className, comm, arg):
-        print("self.do_{}('{} {}')".format(comm, className, arg))
+        print("self.do_{}(\"{} {}\")".format(comm, className, arg))
         return "self.do_{}(\"{} {}\")".format(comm, className, arg)
         
     def __Verif_json(self, paramet):
         try:
-            json.loads(paramet)  
-        except:
+            json.loads(paramet)
+        except ValueError as e:
             return False
         return True
         
 
-    def __Get_paramet(self, line: str):
-        rgex = "^([a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12})\, ?(.*)$"
+    def __get_paramet(self, line):
+        rgex = "^(\"[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}\")\, ?(.*)$"
         regex_prog = re.compile(rgex)
         res = regex_prog.findall(line)
-        args = res[0]
-        return(args)
+        return res[0]
         
     
     def help_EOF(self):
