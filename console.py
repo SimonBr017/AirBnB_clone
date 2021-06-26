@@ -14,6 +14,7 @@ from models.place import Place
 from models.review import Review
 from models import storage
 import re
+import json
 
 
 class HBNBCommand(cmd.Cmd):
@@ -60,7 +61,7 @@ class HBNBCommand(cmd.Cmd):
     prompt = f'{Fore.RED}(hbnb) {Style.RESET_ALL}'
     __classes = ['BaseModel', 'User', 'State', 'City',
                  'Amenity', 'Place', 'Review']
-    __commands = ['create', 'all', 'show', 'destroy', 'count', 'update']
+    __commands = ['create', 'all', 'show', 'destroy', 'count']
 
     def do_EOF(self, arg):
         """exit the program"""
@@ -246,7 +247,7 @@ class HBNBCommand(cmd.Cmd):
             regex_prog = re.compile(regex)
             res = regex_prog.findall(line)
             args = res[0]
-            if args and args[0] in self.__classes and len(args) == 3:
+            if args and args[0] in self.__classes:
                 # arg[0]= className, args[1]=command...
                 className, command, arguments = args
                 if command in self.__commands:
@@ -259,9 +260,51 @@ class HBNBCommand(cmd.Cmd):
                         arguments = "{}".format(className)
                     eval("self.do_{}('{}')".format(command, arguments))
                     return
+                elif command == 'update':
+                    paramet = self.__Get_paramet(arguments)
+                    id = paramet[0]
+                    if self.__Verif_json(paramet[1]):
+                        for att, value in json.loads(paramet[1]).items():
+                            args = "{} {} {}".format(id, att, value)
+                            formatCommande = self.__format_command(className, command, arguments)
+                            eval(formatCommande)
+                        return
+                    """
+                    else:
+                    arguments = arguments.replace('"', '')
+                    arguments = arguments.replace(',', ' ')
+                    arguments = arguments.replace(', ', ' ')
+                    if len(arguments) > 0:
+                        arguments = "{} {}".format(className, arguments)
+                    else:
+                        arguments = "{}".format(className)
+                    eval("self.do_{}('{}')".format(command, arguments))
+                    return
+                    """
+                    
         except:
             return super().default(line)
+        
+    def __format_command(self, className, comm, arg):
+        print("self.do_{}('{} {}')".format(comm, className, arg))
+        return "self.do_{}(\"{} {}\")".format(comm, className, arg)
+        
+    def __Verif_json(self, paramet):
+        try:
+            json.loads(paramet)  
+        except:
+            return False
+        return True
+        
 
+    def __Get_paramet(self, line: str):
+        rgex = "^([a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12})\, ?(.*)$"
+        regex_prog = re.compile(rgex)
+        res = regex_prog.findall(line)
+        args = res[0]
+        return(args)
+        
+    
     def help_EOF(self):
         print(f"{Fore.BLUE}\n       EOF command to exit the program{Style.RESET_ALL}\n")
 
@@ -293,10 +336,10 @@ class HBNBCommand(cmd.Cmd):
             f"{Fore.BLUE}\n                   Updates an instance based on the class name")
         print(
             "             and id by adding or updating attribute.{Style.RESET_ALL}\n")
-
+"""
     def help_count(self):
         print(
             f"{Fore.BLUE}\n           Retrieve the number of instances of a class.{Style.RESET_ALL}\n")
-
+"""
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
