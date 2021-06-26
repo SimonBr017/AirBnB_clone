@@ -44,22 +44,17 @@ class HBNBCommand(cmd.Cmd):
     print(f"{Fore.GREEN}|    |      |    |  |             /   |    |     |    |  |             /{Style.RESET_ALL}")
     time.sleep(0.1)
     print(f"{Fore.GREEN}{Style.BRIGHT}|____|      |____|  |____________/    |____|     |____|  |____________/{Style.RESET_ALL}")
-    time.sleep(0.1)
+    time.sleep(1.5)
     print("\n\n")
     print(f"{Fore.GREEN} *********************************************************************{Style.RESET_ALL}")
-    time.sleep(0.1)
     print("                        AirBnB_clone project")
     print("                          The Console V1.0")
     print("                     An Holberton School Project")
-    time.sleep(0.1)
     print(f"{Fore.GREEN}{Style.BRIGHT} *********************************************************************{Style.RESET_ALL}")
-    time.sleep(0.1)
     print("                                  By:")
     print(f"{Style.BRIGHT} Nathan LAPEYRE (aka Pebkak)                               Simon BRARD{Style.RESET_ALL}")
-    time.sleep(0.1)
     print(f"{Fore.GREEN} *********************************************************************{Style.RESET_ALL}")
     print("                                 2021")
-    time.sleep(0.1)
     print("\n\n")
 
     prompt = f'{Fore.RED}(hbnb) {Style.RESET_ALL}'
@@ -261,28 +256,47 @@ class HBNBCommand(cmd.Cmd):
                     if len(arguments) > 0:
                         arguments = "{} {}".format(className, arguments)
                     else:
-                        arguments ="{}".format(className)
+                        arguments = "{}".format(className)
                     eval("self.do_{}('{}')".format(command, arguments))
                     return
         except:
             return super().default(line)
 
     def help_EOF(self):
-        print(f"{Fore.BLUE}EOF command to exit the program{Style.RESET_ALL}\n")
+        print(f"{Fore.BLUE}\n       EOF command to exit the program{Style.RESET_ALL}\n")
 
     def help_quit(self):
-        print(f"{Fore.BLUE}Quit command to exit the program{Style.RESET_ALL}\n")
+        print(
+            f"{Fore.BLUE}\n       Quit command to exit the program{Style.RESET_ALL}\n")
 
-    """
     def help_create(self):
-        print("Create command to ")
-    def help_show(self):
-    def help_all(self):
-    def help_destroy(self):
-    def help_update(self):
-    def help_count(self):
-    """
+        print(
+            f"{Fore.BLUE}\n                         Creates a new instance of BaseModel,")
+        print(
+            "         saves it (to the JSON file) and prints the id {Style.RESET_ALL}\n")
 
+    def help_show(self):
+        print(f"{Fore.BLUE}\n                Prints the string representation of an")
+        print(
+            "          instance based on the class name and id.{Style.RESET_ALL}\n")
+
+    def help_all(self):
+        print(
+            f"{Fore.BLUE}\n         Prints all string representation of all instances")
+        print("         based or not on the class name.{Style.RESET_ALL}\n")
+
+    def help_destroy(self):
+        print(f"{Fore.BLUE}\n           Deletes an instance based on the class name and id.{Style.RESET_ALL}\n")
+
+    def help_update(self):
+        print(
+            f"{Fore.BLUE}\n                   Updates an instance based on the class name")
+        print(
+            "             and id by adding or updating attribute.{Style.RESET_ALL}\n")
+
+    def help_count(self):
+        print(
+            f"{Fore.BLUE}\n           Retrieve the number of instances of a class.{Style.RESET_ALL}\n")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
