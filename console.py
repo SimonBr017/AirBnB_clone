@@ -18,8 +18,8 @@ class HBNBCommand(cmd.Cmd):
     interpreter command
     """
     prompt = '(hbnb) '
-    classe = ['BaseModel', 'User', 'State', 'City',
-              'Amenity', 'Place', 'Review']
+    __classes = ['BaseModel', 'User', 'State', 'City',
+                 'Amenity', 'Place', 'Review']
 
     def do_EOF(self, arg):
         """exit the program"""
@@ -31,19 +31,25 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         pass
 
-    def do_create(self, arg):
+    def do_create(self, args):
         """
         Creates a new instance of BaseModel,
         saves it (to the JSON file) and prints the id
         """
-        if not arg:
-            print("** class name missing **")
-        elif arg not in self.classe:
-            print("** class doesn't exist **")
-        else:
-            newInstance = eval(arg)()
-            newInstance.save()
-            print(newInstance.id)
+        try:
+            if not args:
+                raise NameError("** class name missing **")
+
+            args_list = args.split()
+
+            if args_list[0] not in self.__classes:
+                raise NameError("** class doesn't exist **")
+            else:
+                newInstance = eval(args_list[0])()
+                newInstance.save()
+                print(newInstance.id)
+        except Exception as exception:
+            print("{}".format(exception.args[0]))
 
     def do_show(self, args):
         """
@@ -56,7 +62,7 @@ class HBNBCommand(cmd.Cmd):
 
             args_list = args.split()
 
-            if args_list[0] not in self.classe:
+            if args_list[0] not in self.__classes:
                 raise NameError("** class doesn't exist **")
             elif len(args_list) == 1:
                 raise ValueError("** instance id missing **")
@@ -72,19 +78,21 @@ class HBNBCommand(cmd.Cmd):
         except Exception as exception:
             print("{}".format(exception.args[0]))
 
-    def do_all(self, arg):
+    def do_all(self, args):
         """
             Prints all string representation of all instances
             based or not on the class name.
         """
         try:
-            if arg is None or arg not in self.classe:
+            args_list = args.split()
+
+            if args_list[0] not in self.__classes:
                 raise NameError("** class doesn't exist **")
             new_dict = storage.all()
             obj_list = []
 
             for key, value in new_dict.items():
-                if not arg or arg == type(value).__name__:
+                if not args_list[0] or args_list[0] == type(value).__name__:
                     obj_list.append(str(value))
 
             print(obj_list)
@@ -102,7 +110,7 @@ class HBNBCommand(cmd.Cmd):
 
             args_list = args.split()
 
-            if args_list[0] not in self.classe:
+            if args_list[0] not in self.__classes:
                 raise NameError("** class doesn't exist **")
             elif len(args_list) == 1:
                 raise ValueError("** instance id missing **")
@@ -129,7 +137,7 @@ class HBNBCommand(cmd.Cmd):
 
             args_list = args.split()
 
-            if args_list[0] not in self.classe:
+            if args_list[0] not in self.__classes:
                 raise NameError("** class doesn't exist **")
             if len(args_list) == 1:
                 raise ValueError("** instance id missing **")
@@ -154,6 +162,38 @@ class HBNBCommand(cmd.Cmd):
         except Exception as exception:
             print("{}".format(exception.args[0]))
 
+    def do_count(self, args):
+        """
+            Retrieve the number of instances of
+            a class.
+        """
+        try:
+            count = 0
+            if not args:
+                raise NameError("** class name missing **")
+
+            args_list = args.split()
+
+            if args_list[0] not in self.__classes:
+                raise NameError("** class doesn't exist **")
+
+            new_dict = storage.all()
+
+            for key, value in new_dict.items():
+                if not args_list[0] or args_list[0] == type(value).__name__:
+                    count += 1
+
+            print(count)
+        except Exception as exception:
+            print("{}".format(exception.args[0]))
+
+    def default(self, args):
+        """
+            Called when command prefix is not recognized in order
+            to verify and catch or not the adequate function.
+        """
+        pass
+
     def help_EOF(self):
         print("EOF command to exit the program\n")
 
@@ -167,6 +207,7 @@ class HBNBCommand(cmd.Cmd):
     def help_all(self):
     def help_destroy(self):
     def help_update(self):
+    def help_count(self):
     """
 
 if __name__ == '__main__':
