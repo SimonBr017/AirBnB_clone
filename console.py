@@ -22,31 +22,44 @@ class HBNBCommand(cmd.Cmd):
     """
 
     print(f"{Fore.GREEN}{Style.BRIGHT} ____        ____    ____                                 ____{Style.RESET_ALL}")
+    time.sleep(0.1)
     print(f"{Fore.GREEN}|    |      |    |  |    |                               |    |{Style.RESET_ALL}")
+    time.sleep(0.1)
     print(f"{Fore.GREEN}|    |      |    |  |    |                               |    |{Style.RESET_ALL}")
+    time.sleep(0.1)
     print(f"{Fore.GREEN}|    |      |    |  |    |             {Style.BRIGHT}___{Style.RESET_ALL}{Fore.GREEN}               |    |{Style.RESET_ALL}")
+    time.sleep(0.1)
     print(f"{Fore.GREEN}|    |______|    |  |    |            |   | _______      |    |{Style.RESET_ALL}")
+    time.sleep(0.1)
     print(f"{Fore.GREEN}|                |  |    |_______     |   |/       \     |    |_______{Style.RESET_ALL}")
+    time.sleep(0.1)
     print(f"{Fore.GREEN}|     _______    |  |            \    |      ___    \    |            \ {Style.RESET_ALL}")
+    time.sleep(0.1)
     print(f"{Fore.GREEN}|    |      |    |  |      __     \   |     /   \    \   |      __     \ {Style.RESET_ALL}")
+    time.sleep(0.1)
     print(f"{Fore.GREEN}|    |      |    |  |     /  \     |  |    |     |    |  |     /  \     |{Style.RESET_ALL}")
+    time.sleep(0.1)
     print(f"{Fore.GREEN}|    |      |    |  |     \__/     |  |    |     |    |  |     \__/     |{Style.RESET_ALL}")
+    time.sleep(0.1)
     print(f"{Fore.GREEN}|    |      |    |  |             /   |    |     |    |  |             /{Style.RESET_ALL}")
+    time.sleep(0.1)
     print(f"{Fore.GREEN}{Style.BRIGHT}|____|      |____|  |____________/    |____|     |____|  |____________/{Style.RESET_ALL}")
+    time.sleep(0.1)
     print("\n\n")
     print(f"{Fore.GREEN} *********************************************************************{Style.RESET_ALL}")
+    time.sleep(0.1)
     print("                        AirBnB_clone project")
     print("                          The Console V1.0")
     print("                     An Holberton School Project")
+    time.sleep(0.1)
     print(f"{Fore.GREEN}{Style.BRIGHT} *********************************************************************{Style.RESET_ALL}")
-    time.sleep(1.5)
+    time.sleep(0.1)
     print("                                  By:")
-    time.sleep(1)
     print(f"{Style.BRIGHT} Nathan LAPEYRE (aka Pebkak)                               Simon BRARD{Style.RESET_ALL}")
-    time.sleep(0.5)
+    time.sleep(0.1)
     print(f"{Fore.GREEN} *********************************************************************{Style.RESET_ALL}")
     print("                                 2021")
-    time.sleep(1)
+    time.sleep(0.1)
     print("\n\n")
 
     prompt = f'{Fore.RED}(hbnb) {Style.RESET_ALL}'
@@ -249,11 +262,8 @@ class HBNBCommand(cmd.Cmd):
                         arguments = "{} {}".format(className, arguments)
                     else:
                         arguments ="{}".format(className)
-                        
-                    print("self.do_{}({})".format(command, arguments))
                     eval("self.do_{}('{}')".format(command, arguments))
                     return
-
         except:
             return super().default(line)
 
