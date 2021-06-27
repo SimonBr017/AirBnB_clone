@@ -577,7 +577,7 @@ class HBNBCommand(cmd.Cmd):
     
     def help_super(self):
         print(
-            f"{Fore.RED}\n      install sox first with sudo apt install sox then run the comamnde :){Style.RESET_ALL}\n")
+            f"{Fore.RED}\n      If you're using Linux install sox first with sudo apt install sox then run the comamnde :){Style.RESET_ALL}\n")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
