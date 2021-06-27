@@ -300,7 +300,10 @@ class HBNBCommand(cmd.Cmd):
         """
         play a 'beep' wiht the system
         """
-        os.system('play -nq -t alsa synth {} sine {}'.format(duration/1000, freq))
+        try:
+            os.system('play -nq -t alsa synth {} sine {}'.format(duration/1000, freq)) #Linux users
+        except:
+            from winsound import Beep #windows users
             
     def do_create(self, args):
         """
@@ -574,7 +577,7 @@ class HBNBCommand(cmd.Cmd):
     
     def help_super(self):
         print(
-            f"{Fore.RED}\n      install sox first with sudo apt install sox then run the comande :){Style.RESET_ALL}\n")
+            f"{Fore.RED}\n      install sox first with sudo apt install sox then run the comamnde :){Style.RESET_ALL}\n")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
