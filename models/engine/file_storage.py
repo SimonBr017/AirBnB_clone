@@ -16,23 +16,23 @@ class FileStorage:
 
     def all(self):
         """returns the dictionary __objects"""
-        return FileStorage.__objects
+        return self.__objects
 
     def new(self, obj):
         """
         sets in __objects the obj with
         key <obj class name>.id
         """
-        FileStorage.__objects[type(obj).__name__ + "." + obj.id] = obj
+        self.__objects[type(obj).__name__ + "." + obj.id] = obj
 
     def save(self):
         """
         serializes __objects to the JSON file
         """
         new_dic = {}
-        for key in FileStorage.__objects:
-            new_dic[key] = FileStorage.__objects[key].to_dict()
-        with open(FileStorage.__file_path, "w") as file:
+        for key in self.__objects:
+            new_dic[key] = self.__objects[key].to_dict()
+        with open(self.__file_path, "w") as file:
             json.dump(new_dic, file)
 
     def reload(self):
@@ -47,10 +47,10 @@ class FileStorage:
             from models.amenity import Amenity
             from models.place import Place
             from models.review import Review
-            with open(FileStorage.__file_path, "r") as file:
+            with open(self.__file_path, "r") as file:
                 for key, value in json.load(file).items():
                     class_name = eval(value['__class__'])(**value)
-                    FileStorage.__objects[key] = class_name
+                    self.__objects[key] = class_name
 
         except Exception:
             pass

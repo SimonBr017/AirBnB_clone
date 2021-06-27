@@ -23,42 +23,6 @@ class HBNBCommand(cmd.Cmd):
     interpreter command
     """
 
-    print(f"{Fore.GREEN}{Style.BRIGHT} ____        ____    ____                                 ____{Style.RESET_ALL}")
-    time.sleep(0.1)
-    print(f"{Fore.GREEN}|    |      |    |  |    |                               |    |{Style.RESET_ALL}")
-    time.sleep(0.1)
-    print(f"{Fore.GREEN}|    |      |    |  |    |                               |    |{Style.RESET_ALL}")
-    time.sleep(0.1)
-    print(f"{Fore.GREEN}|    |      |    |  |    |             {Style.BRIGHT}___{Style.RESET_ALL}{Fore.GREEN}               |    |{Style.RESET_ALL}")
-    time.sleep(0.1)
-    print(f"{Fore.GREEN}|    |______|    |  |    |            |   | _______      |    |{Style.RESET_ALL}")
-    time.sleep(0.1)
-    print(f"{Fore.GREEN}|                |  |    |_______     |   |/       \     |    |_______{Style.RESET_ALL}")
-    time.sleep(0.1)
-    print(f"{Fore.GREEN}|     _______    |  |            \    |      ___    \    |            \ {Style.RESET_ALL}")
-    time.sleep(0.1)
-    print(f"{Fore.GREEN}|    |      |    |  |      __     \   |     /   \    \   |      __     \ {Style.RESET_ALL}")
-    time.sleep(0.1)
-    print(f"{Fore.GREEN}|    |      |    |  |     /  \     |  |    |     |    |  |     /  \     |{Style.RESET_ALL}")
-    time.sleep(0.1)
-    print(f"{Fore.GREEN}|    |      |    |  |     \__/     |  |    |     |    |  |     \__/     |{Style.RESET_ALL}")
-    time.sleep(0.1)
-    print(f"{Fore.GREEN}|    |      |    |  |             /   |    |     |    |  |             /{Style.RESET_ALL}")
-    time.sleep(0.1)
-    print(f"{Fore.GREEN}{Style.BRIGHT}|____|      |____|  |____________/    |____|     |____|  |____________/{Style.RESET_ALL}")
-    time.sleep(1.5)
-    print("\n\n")
-    print(f"{Fore.GREEN} *********************************************************************{Style.RESET_ALL}")
-    print("                        AirBnB_clone project")
-    print("                          The Console V1.0")
-    print("                     An Holberton School Project")
-    print(f"{Fore.GREEN}{Style.BRIGHT} *********************************************************************{Style.RESET_ALL}")
-    print("                                  By:")
-    print(f"{Style.BRIGHT} Nathan LAPEYRE (aka Pebkak)                               Simon BRARD{Style.RESET_ALL}")
-    print(f"{Fore.GREEN} *********************************************************************{Style.RESET_ALL}")
-    print("                                 2021")
-    print("\n\n")
-
     prompt = f'{Fore.RED}(hbnb) {Style.RESET_ALL}'
     __classes = ['BaseModel', 'User', 'State', 'City',
                  'Amenity', 'Place', 'Review']
@@ -73,237 +37,6 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         pass
-    
-    def do_super(self, arg):
-        """
-        play super mario theme
-        """
-        print(f"{Fore.RED}\n")
-        print ("                   yyyyyyyyy")
-        time.sleep(0.1)
-        print ("                 yy         yyy ")
-        time.sleep(0.1)
-        print ("              yyy   yyyyyyyy   yyy ")
-        time.sleep(0.1)
-        print ("            yyy   yy       yy    yy ")
-        time.sleep(0.1)
-        print ("          yyy     y MMM MMM y      yy ")
-        time.sleep(0.1)
-        print ("        yyy      y  MMMMMMM  y       y ")
-        time.sleep(0.1)
-        print ("       yyy     yyy  MM M MM  y       yy ")
-        time.sleep(0.1)
-        print ("     yyy      yyyy  MM M MM y  yyy     y ")
-        time.sleep(0.1)
-        print ("    yy      yyyyyyy MM   MM y  yyyyyy   y ")
-        time.sleep(0.1)
-        print ("   yy     yyyyy   y         y    yyyyyy  yy ")
-        time.sleep(0.1)
-        print ("  y      yyyyyy    yyyyyyyyy      yyyyy   y ")
-        time.sleep(0.1)
-        print (" y      yyy      @@@ yyyyyy @@@     yyyy   y ")
-        time.sleep(0.1)
-        print (" y   yyyyy      @   @      @   @    yyyyyy  y ")
-        time.sleep(0.1)       
-        print ("  yyyyy         @ OO @    @ OO @     yyyyyyy ")
-        time.sleep(0.1)
-        print ("  @@            @ O  @    @  O @      yy @@ ")
-        time.sleep(0.1)
-        print (" @  @            @  ********  @         @  @ ")
-        time.sleep(0.1)
-        print ("@    @            @*        *@         @    @ ")
-        time.sleep(0.1)
-        print ("@  @ @            *          *         @ @  @ ")
-        time.sleep(0.1)
-        print ("@  @@@    ####    *          *   ###   @@@  @ ")
-        time.sleep(0.1)
-        print (" @   @     #####   *        *  ####    @   @ ")
-        time.sleep(0.1)
-        print (" @@          ###### *      * ######       @@ ")
-        time.sleep(0.1)
-        print ("  @@@        #######********######       @@ ")
-        time.sleep(0.1)
-        print ("    @@@       ##################     @@@@ ")
-        time.sleep(0.1)
-        print ("      @@          ############         @@ ")
-        time.sleep(0.1)
-        print ("        @@           AAAAAA          @@ ")
-        time.sleep(0.1)
-        print ("         @@         AAAAAAAA        @@ ")
-        time.sleep(0.1)
-        print ("           @@@       AAAAAA      @@@ ")
-        time.sleep(0.1)
-        print ("              @@      AAAA      @@ ")
-        time.sleep(0.1)
-        print ("                @@            @@ ")
-        time.sleep(0.1)
-        print ("                 @@@@@@@@@@@@@ ")
-        time.sleep(0.1)
-        print(f"{Style.RESET_ALL}\n")
-        self.__Beep(480,200)
-        self.__Beep(1568,200)
-        self.__Beep(1568,200)
-        self.__Beep(1568,200)
-        self.__Beep(740,200)
-        self.__Beep(784,200)
-        self.__Beep(784,200)
-        self.__Beep(784,200)
-        self.__Beep(370,200)
-        self.__Beep(392,200)
-        self.__Beep(370,200)
-        self.__Beep(392,200)
-        self.__Beep(392,400)
-        self.__Beep(196,400)
-        self.__Beep(740,200)
-        self.__Beep(784,200)
-        self.__Beep(784,200)
-        self.__Beep(740,200)
-        self.__Beep(784,200)
-        self.__Beep(784,200)
-        self.__Beep(740,200)
-        self.__Beep(84,200)
-        self.__Beep(880,200)
-        self.__Beep(831,200)
-        self.__Beep(880,200)
-        self.__Beep(988,400)
-        self.__Beep(880,200)
-        self.__Beep(784,200)
-        self.__Beep(699,200)
-        self.__Beep(740,200)
-        self.__Beep(784,200)
-        self.__Beep(784,200)
-        self.__Beep(740,200)
-        self.__Beep(784,200)
-        self.__Beep(784,200)
-        self.__Beep(740,200)
-        self.__Beep(784,200)
-        self.__Beep(880,200)
-        self.__Beep(830,200)
-        self.__Beep(880,200)
-        self.__Beep(988,400)
-        time.sleep(200/1000)
-        self.__Beep(740,200)
-        self.__Beep(784,200)
-        self.__Beep(784,200)
-        self.__Beep(740,200)
-        self.__Beep(784,200)
-        self.__Beep(784,200)
-        self.__Beep(740,200)
-        self.__Beep(784,200)
-        self.__Beep(880,200)
-        self.__Beep(830,200)
-        self.__Beep(880,200)
-        self.__Beep(988,400)
-        self.__Beep(880,200)
-        self.__Beep(784,200)
-        self.__Beep(699,200)
-        self.__Beep(659,200)
-        self.__Beep(699,200)
-        self.__Beep(784,200)
-        self.__Beep(880,400)
-        self.__Beep(784,200)
-        self.__Beep(699,200)
-        self.__Beep(659,200)
-        self.__Beep(587,200)
-        self.__Beep(659,200)
-        self.__Beep(699,200)
-        self.__Beep(784,400)
-        self.__Beep(699,200)
-        self.__Beep(659,200)
-        self.__Beep(587,200)
-        self.__Beep(523,200)
-        self.__Beep(587,200)
-        self.__Beep(659,200)
-        self.__Beep(699,400)
-        self.__Beep(659,200)
-        self.__Beep(587,200)
-        self.__Beep(494,200)
-        self.__Beep(523,200)
-        time.sleep(400/1000)
-        self.__Beep(349,400)
-        self.__Beep(392,200)
-        self.__Beep(330,200)
-        self.__Beep(523,200)
-        self.__Beep(494,200)
-        self.__Beep(466,200)
-        self.__Beep(440,200)
-        self.__Beep(494,200)
-        self.__Beep(523,200)
-        self.__Beep(880,200)
-        self.__Beep(494,200)
-        self.__Beep(880,200)
-        self.__Beep(1760,200)
-        self.__Beep(440,200)
-        self.__Beep(392,200)
-        self.__Beep(440,200)
-        self.__Beep(494,200)
-        self.__Beep(784,200)
-        self.__Beep(440, 200)
-        self.__Beep(784,200)
-        self.__Beep(1568,200)
-        self.__Beep(392,200)
-        self.__Beep(349,200)
-        self.__Beep(440,200)
-        self.__Beep(699,200)
-        self.__Beep(415,200)
-        self.__Beep(699,200)
-        self.__Beep(1397,200)
-        self.__Beep(349,200)
-        self.__Beep(330,200)
-        self.__Beep(311,200)
-        self.__Beep(330,200)
-        self.__Beep(659,200)
-        self.__Beep(699,400)
-        self.__Beep(784,400)
-        self.__Beep(440,200)
-        self.__Beep(494,200)
-        self.__Beep(523,200)
-        self.__Beep(880,200)
-        self.__Beep(494,200)
-        self.__Beep(880,200)
-        self.__Beep(1760,200)
-        self.__Beep(440,200)
-        self.__Beep(392,200)
-        self.__Beep(440,200)
-        self.__Beep(494,200)
-        self.__Beep(784,200)
-        self.__Beep(440,200)
-        self.__Beep(784,200)
-        self.__Beep(1568,200)
-        self.__Beep(392,200)
-        self.__Beep(349,200)
-        self.__Beep(392,200)
-        self.__Beep(440,200)
-        self.__Beep(699,200)
-        self.__Beep(659,200)
-        self.__Beep(699,200)
-        self.__Beep(740,200)
-        self.__Beep(784,200)
-        self.__Beep(392,200)
-        self.__Beep(392,200)
-        self.__Beep(392,200)
-        self.__Beep(392,200)
-        self.__Beep(196,200)
-        self.__Beep(196,200)
-        self.__Beep(196,200)
-        self.__Beep(185,200)
-        self.__Beep(196,200)
-        self.__Beep(185,200)
-        self.__Beep(196,200)
-        self.__Beep(208,200)
-        self.__Beep(220,200)
-        self.__Beep(233,200)
-        self.__Beep(247,200)
-
-          
-    def __Beep(self, freq, duration):
-        """
-        play a 'beep' wiht the system
-        """
-        try:
-            os.system('play -nq -t alsa synth {} sine {}'.format(duration/1000, freq)) #Linux users
-        except:
-            from winsound import Beep #windows users
             
     def do_create(self, args):
         """
@@ -321,9 +54,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 newInstance = eval(args_list[0])()
                 newInstance.save()
-                print(f"{Fore.GREEN}", end="")
-                print(newInstance.id, end='')
-                print(f"{Style.RESET_ALL}")
+                print(newInstance.id)
         except Exception as exception:
             print("{}".format(exception.args[0]))
 
@@ -348,9 +79,7 @@ class HBNBCommand(cmd.Cmd):
 
             if key not in new_dict:
                 raise ValueError("** no instance found **")
-            print(f"{Fore.BLUE}", end="")
-            print(new_dict[key], end="")
-            print(f"{Style.RESET_ALL}")
+            print(new_dict[key])
         except Exception as exception:
             print("{}".format(exception.args[0]))
 
@@ -361,11 +90,11 @@ class HBNBCommand(cmd.Cmd):
         """
         try:
             args_list = args.split()
+            new_dict = storage.all()
+            obj_list = []
 
             if args_list[0] not in self.__classes:
                 raise NameError("** class doesn't exist **")
-            new_dict = storage.all()
-            obj_list = []
 
             for key, value in new_dict.items():
                 if not args_list[0] or args_list[0] == type(value).__name__:
@@ -541,43 +270,32 @@ class HBNBCommand(cmd.Cmd):
         
     
     def help_EOF(self):
-        print(f"{Fore.BLUE}\n       EOF command to exit the program{Style.RESET_ALL}\n")
+        print("\n\tEOF command to exit the program\n")
 
     def help_quit(self):
-        print(
-            f"{Fore.BLUE}\n       Quit command to exit the program{Style.RESET_ALL}\n")
+        print("\n\tQuit command to exit the program\n")
 
     def help_create(self):
-        print(
-            f"{Fore.BLUE}\n                         Creates a new instance of BaseModel,")
-        print(
-            "         saves it (to the JSON file) and prints the id {Style.RESET_ALL}\n")
+        print("\n\tCreates a new instance of <ClassName>, "
+              "saves it (to the JSON file) and prints the ID\n")
 
     def help_show(self):
-        print(f"{Fore.BLUE}\n                Prints the string representation of an")
-        print(
-            "          instance based on the class name and id.{Style.RESET_ALL}\n")
+        print("\n\tPrints the string representation of an "
+              "instance based on the className and ID.\n")
 
     def help_all(self):
-        print(
-            f"{Fore.BLUE}\n         Prints all string representation of all instances")
-        print("         based or not on the class name.{Style.RESET_ALL}\n")
+        print("\n\tPrints all string representation of all instances "
+              "based or not on the className.\n")
 
     def help_destroy(self):
-        print(f"{Fore.BLUE}\n           Deletes an instance based on the class name and id.{Style.RESET_ALL}\n")
+        print("\n\tDeletes an instance based on the className and ID.\n")
 
     def help_update(self):
-        print(
-            f"{Fore.BLUE}\n                   Updates an instance based on the class name")
-        print(
-            "             and id by adding or updating attribute.{Style.RESET_ALL}\n")
+        print("\n\tUpdates an instance based on the className "\
+              "and ID by adding or updating attribute.\n")
+
     def help_count(self):
-        print(
-            f"{Fore.BLUE}\n           Retrieve the number of instances of a class.{Style.RESET_ALL}\n")
-    
-    def help_super(self):
-        print(
-            f"{Fore.RED}\n      If you're using Linux install sox first with sudo apt install sox then run the comamnde :){Style.RESET_ALL}\n")
+        print("\n\tRetrieve the number of instances of a class.\n")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
