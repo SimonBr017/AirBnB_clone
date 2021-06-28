@@ -19,6 +19,9 @@ class ConsoleTest(unittest.TestCase):
         ConsoleTest Class
     """
 
+    __classes = ['BaseModel', 'User', 'State', 'City',
+                 'Amenity', 'Place', 'Review']
+
     def testHelpEOF(self):
         output = "\n\tEOF command to exit the program\n\n"
         with patch('sys.stdout', new=StringIO()) as f:
@@ -75,11 +78,8 @@ class ConsoleTest(unittest.TestCase):
         if os.path.exists("file_storage.json"): 
             os.remove("file_storage.json")
 
-    def createConsole(self):
-        return HBNBCommand()
-
     def testPrompt(self):
-        self.assertEqual(f'{Fore.RED}(hbnb) {Style.RESET_ALL}', 
+        self.assertEqual("(hbnb) ", 
                          HBNBCommand().prompt)
 
     def testQuit(self):
@@ -102,37 +102,23 @@ class ConsoleTest(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("create Continent")
             self.assertEqual(f.getvalue(), "** class doesn't exist **\n")
-        self.assertEqual(len(storage.all()), 0)
+        
+        for className in self.__classes:
+            self.__createObject(className)
+        
+
+    def __createObject(self, className):
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("create BaseModel")
-        self.assertEqual(len(storage.all()), 1)
+            HBNBCommand().onecmd("count {}".format(className))
+        count = int(f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("create User")
-        self.assertEqual(len(storage.all()), 2)
+            HBNBCommand().onecmd("create {}".format(className))
+        id = f.getvalue()
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("create State")
-        self.assertEqual(len(storage.all()), 3)
+            HBNBCommand().onecmd("count {}".format(className))
+        self.assertEqual(f.getvalue(), str(count + 1) + "\n")
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("create City")
-        self.assertEqual(len(storage.all()), 4)
-        with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("create Place")
-        self.assertEqual(len(storage.all()), 5)
-        with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("create Amenity")
-        self.assertEqual(len(storage.all()), 6)
-        with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("create Review")
-        self.assertEqual(len(storage.all()), 7)
-        with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("count Review")
-            self.assertEqual(f.getvalue(), f"{Fore.GREEN}1{Style.RESET_ALL}\n")
-        with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("create Review")
-        self.assertEqual(len(storage.all()), 8)
-        with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("count Review")
-            self.assertEqual(f.getvalue(), f"{Fore.GREEN}2{Style.RESET_ALL}\n")
+            HBNBCommand().onecmd("destroy {} {}".format(className, id))
 
     def testDoCount(self):
         with patch('sys.stdout', new=StringIO()) as f:
@@ -143,7 +129,7 @@ class ConsoleTest(unittest.TestCase):
             self.assertEqual(f.getvalue(), "** class doesn't exist **\n")
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("count User")
-            self.assertEqual(f.getvalue(), f"{Fore.GREEN}0{Style.RESET_ALL}\n")
+            self.assertEqual(f.getvalue(), "1\n")
     
     def testDoShow(self):
         with patch('sys.stdout', new=StringIO()) as f:
@@ -163,6 +149,12 @@ class ConsoleTest(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("all Continent")
             self.assertEqual(f.getvalue(), "** class doesn't exist **\n")
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("create User")
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("all User")
+            self.assertIn("User", f.getvalue())
+            self.assertNotIn("BaseModel", f.getvalue())
     
     def testDoDestroy(self):
         with patch('sys.stdout', new=StringIO()) as f:

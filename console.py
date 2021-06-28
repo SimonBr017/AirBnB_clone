@@ -23,7 +23,7 @@ class HBNBCommand(cmd.Cmd):
     interpreter command
     """
 
-    prompt = f'{Fore.RED}(hbnb) {Style.RESET_ALL}'
+    prompt = "(hbnb) "
     __classes = ['BaseModel', 'User', 'State', 'City',
                  'Amenity', 'Place', 'Review']
     __commands = ['create', 'all', 'show', 'destroy', 'count']
@@ -93,15 +93,13 @@ class HBNBCommand(cmd.Cmd):
             new_dict = storage.all()
             obj_list = []
 
-            if args_list[0] not in self.__classes:
+            if args_list and args_list[0] not in self.__classes:
                 raise NameError("** class doesn't exist **")
 
             for key, value in new_dict.items():
-                if not args_list[0] or args_list[0] == type(value).__name__:
+                if not args_list or args_list[0] == type(value).__name__:
                     obj_list.append(str(value))
-            print(f"{Fore.BLUE}", end="")
-            print(obj_list, end="")
-            print(f"{Style.RESET_ALL}")
+            print(obj_list)
         except Exception as exception:
             print("{}".format(exception.args[0]))
 
@@ -192,9 +190,7 @@ class HBNBCommand(cmd.Cmd):
             for key, value in new_dict.items():
                 if not args_list[0] or args_list[0] == type(value).__name__:
                     count += 1
-            print(f"{Fore.GREEN}", end="")
-            print(count, end="")
-            print(f"{Style.RESET_ALL}")
+            print(count)
         except Exception as exception:
             print("{}".format(exception.args[0]))
 
@@ -234,7 +230,10 @@ class HBNBCommand(cmd.Cmd):
                             arguments = "{}".format(className)
                         eval("self.do_{}('{}')".format(command, arguments))
                         return
-                    
+            elif args and not args[0]:
+                print("** class name missing **")
+            elif args and args[0] not in self.__classes:
+                print("** class doesn't exist **")
         except:
             return super().default(line)
 
@@ -267,8 +266,7 @@ class HBNBCommand(cmd.Cmd):
         regex_prog = re.compile(rgex)
         res = regex_prog.findall(line)
         return res[0]
-        
-    
+
     def help_EOF(self):
         print("\n\tEOF command to exit the program\n")
 
