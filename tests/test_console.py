@@ -75,11 +75,11 @@ class ConsoleTest(unittest.TestCase):
             self.assertEqual(f.getvalue(), output)
 
     def tearDown(self):
-        if os.path.exists("file_storage.json"): 
+        if os.path.exists("file_storage.json"):
             os.remove("file_storage.json")
 
     def testPrompt(self):
-        self.assertEqual("(hbnb) ", 
+        self.assertEqual("(hbnb) ",
                          HBNBCommand().prompt)
 
     def testQuit(self):
@@ -91,10 +91,10 @@ class ConsoleTest(unittest.TestCase):
             HBNBCommand().onecmd("EOF")
 
     def testEmptyLine(self):
-         with patch('sys.stdout', new=StringIO()) as f:
+        with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("\n")
             self.assertEqual(f.getvalue(), "")
-    
+
     def testDoCreate(self):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("create")
@@ -102,10 +102,9 @@ class ConsoleTest(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("create Continent")
             self.assertEqual(f.getvalue(), "** class doesn't exist **\n")
-        
+
         for className in self.__classes:
             self.__createObject(className)
-        
 
     def __createObject(self, className):
         with patch('sys.stdout', new=StringIO()) as f:
@@ -130,7 +129,7 @@ class ConsoleTest(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("count User")
             self.assertEqual(f.getvalue(), "2\n")
-    
+
     def testDoShow(self):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("show")
@@ -155,7 +154,7 @@ class ConsoleTest(unittest.TestCase):
             HBNBCommand().onecmd("all User")
             self.assertIn("User", f.getvalue())
             self.assertNotIn("BaseModel", f.getvalue())
-    
+
     def testDoDestroy(self):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("destroy")
@@ -169,7 +168,7 @@ class ConsoleTest(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("destroy User ID")
             self.assertEqual(f.getvalue(), "** no instance found **\n")
-        with patch('sys.stdout', new=StringIO()) as f: 
+        with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("create User")
         id = self.__getUuid4(f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
@@ -180,7 +179,7 @@ class ConsoleTest(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("destroy User {}".format(id))
             self.assertEqual(f.getvalue(), "** no instance found **\n")
-    
+
     def testDoUpdate(self):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("update")
