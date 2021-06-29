@@ -160,6 +160,18 @@ class ConsoleTest(unittest.TestCase):
             HBNBCommand().onecmd("show User ID")
             self.assertEqual(f.getvalue(), "** no instance found **\n")
 
+        for className in self.__classes:
+            self.__showObjectDot(className)
+
+    def __showObjectDot(self, className):
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("create {}".format(className))
+        id = f.getvalue().strip()
+        obj = storage.all()["{}.{}".format(className, id)]
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("{}.show(\"{}\")".format(className, id))
+            self.assertEqual(obj.__str__(), f.getvalue().strip())
+
     def testDoAll(self):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("all Continent")

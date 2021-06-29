@@ -16,6 +16,49 @@
                                 "$gcc"
                         ],
                         "group": "build"
-                }
+                },
+                {
+                        "label": "[AirBnB] Tests with coverage",
+                        "command": "nosetests",
+                        "type": "shell",
+                        "args": [
+                            "-sv",
+                            "--with-xunit",
+                            "--xunit-file='${fileWorkspaceFolder}/.reports/tests/nosetests.xml'",
+                            "--with-xcoverage",
+                            "--xcoverage-file='${fileWorkspaceFolder}/.reports/tests/coverage.xml'",
+                            "${fileWorkspaceFolder}/tests"
+                        ],
+                        "group": {
+                            "kind": "build",
+                            "isDefault": true
+                        },
+                        "presentation": {
+                            "echo": true,
+                            "reveal": "always",
+                            "focus": true,
+                            "panel": "shared",
+                            "showReuseMessage": true,
+                            "clear": false
+                        },
+                        "problemMatcher": {
+                            "owner": "python",
+                            "fileLocation": "autoDetect",
+                            "pattern": [
+                                {
+                                    "regexp": ".*File \\\"{[^\\\"]|.*)\\\", line(\\d+).*",
+                                    "file": 1,
+                                    "line": 2
+                                },
+                                {
+                                    "regexp": ".*raise.*$"
+                                },
+                                {
+                                    "regexp": "^\\s*(.*)\\s*$",
+                                    "message": 1
+                                }
+                            ]
+                        }
+                    }
         ]
 }
