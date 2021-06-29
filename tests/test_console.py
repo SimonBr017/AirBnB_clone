@@ -150,15 +150,30 @@ class ConsoleTest(unittest.TestCase):
             self.assertEqual(f.getvalue(), "** class doesn't exist **\n")
 
             for className in self.__classes:
-                self.__createObject(className)
+                self.__allObjectSpace(className)
+                self.__allObjectDot(className)
         
     
-    def __allObject(self, className):
+    def __allObjectSpace(self, className):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("create {}".format(className))
+        id = f.getvalue()
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("all {}".format(className))
             self.assertIn("{}".format(className), f.getvalue())
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("destroy {} {}".format(className, id))
+
+    def __allObjectDot(self, className):
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("create {}".format(className))
+        id = f.getvalue()
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("{}.all".format(className))
+            self.assertIn("{}".format(className), f.getvalue())
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("destroy {} {}".format(className, id))
+        
 
     def testDoDestroy(self):
         with patch('sys.stdout', new=StringIO()) as f:
