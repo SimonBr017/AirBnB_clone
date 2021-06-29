@@ -265,10 +265,11 @@ class HBNBCommand(cmd.Cmd):
 
     def __get_paramet(self, line):
         try:
-            rgex = "^(.*)((\,)?)?(.*)$"
+            rgex = "^\"(.*)\"((,? ?)({.*}))$"
             regex_prog = re.compile(rgex)
             res = regex_prog.findall(line)
-            return res[0][0], res[0][3]
+            parameters = res[0]
+            return parameters[0], parameters[3]
         except:
             print("** instance id missing **")
             return False
