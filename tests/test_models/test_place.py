@@ -14,3 +14,9 @@ class TestPlace(unittest.TestCase):
         place = Place()
         self.assertTrue(hasattr(place, "name"))
         self.assertEqual(place.name, "")
+
+    def testCityId(self):
+        """Test Place has attr city_id"""
+        place = Place()
+        self.assertTrue(hasattr(place, "city_id"))
+        self.assertEqual(place.city_id, "")
