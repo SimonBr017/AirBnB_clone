@@ -266,9 +266,12 @@ class ConsoleTest(unittest.TestCase):
         obj = storage.all()["{}.{}".format(className, id)]
         attrName = "first_name"
         strValue = "John"
+        self.assertNotIn(attrName, obj.__dict__.keys())
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("{}.update(\"{}\", \"{}\", \"{}\")"
                             .format(className, id, attrName, strValue))
+        obj = storage.all()["{}.{}".format(className, id)]
+        self.assertIn(attrName, obj.__dict__.keys())
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("{}.show(\"{}\")".format(className, id))
             self.assertEqual(obj.__str__(), f.getvalue().strip())
