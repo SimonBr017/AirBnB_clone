@@ -63,3 +63,7 @@ class BaseModelTest(unittest.TestCase):
                 
             }
         )
+    def testStr(self):
+        inst = BaseModel()
+        string = "[BaseModel] ({}) {}".format(inst.id, inst.__dict__)
+        self.assertEqual(string, str(inst))

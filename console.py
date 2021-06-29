@@ -148,6 +148,7 @@ class HBNBCommand(cmd.Cmd):
 
             new_dict = storage.all()
             key = args_list[0] + "." + args_list[1]
+            
 
             if key not in new_dict:
                 raise ValueError("** no instance found **")
@@ -162,7 +163,7 @@ class HBNBCommand(cmd.Cmd):
                 args_list[3] = '"' + args_list[3]
             if args_list[3][-1] != '"':
                 args_list[3] = args_list[3] + '"'
-
+            
             if args_list[2] not in ("id", "created_at", "updated_at"):
                 setattr(obj, args_list[2], args_list[3][1:-1])
                 storage.save()
@@ -217,6 +218,7 @@ class HBNBCommand(cmd.Cmd):
                     id = self.__clean_parameter(paramet[0])
                     if self.__Verif_json(paramet[1]):
                         modified_paramet_1 = paramet[1].replace("'", '"')
+                        
                         for att, value in json.loads(modified_paramet_1).items():
                             args = "{} {} {}".format(id, att, value)
                             formatCommande = self.__format_command(className, command, args)
