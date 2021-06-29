@@ -155,7 +155,7 @@ class HBNBCommand(cmd.Cmd):
             obj = new_dict[key]
 
             if len(args_list) == 2:
-                raise ValueError("** attribute name found **")
+                raise ValueError("** attribute name missing **")
             if len(args_list) == 3:
                 raise ValueError("** value missing **")
             if args_list[3][0] != '"':
