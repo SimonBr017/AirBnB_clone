@@ -13,4 +13,4 @@ class TestPlace(unittest.TestCase):
         """Test Place has attribute"""
         place = Place()
         self.assertTrue(hasattr(place, "name"))
-        self.assertEqual(place.city_id, "")
+        self.assertEqual(place.name, "")
