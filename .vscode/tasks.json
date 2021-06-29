@@ -1,0 +1,21 @@
+{
+        "version": "2.0.0",
+        "tasks": [
+                {
+                        "label": "[AirBnB] console",
+                        "type": "shell",
+                        "command": "/usr/bin/python3",
+                        "args": [
+                                "${fileWorkspaceFolder}/console.py",
+
+                        ],
+                        "options": {
+                                "cwd": "${workspaceFolder}"
+                        },
+                        "problemMatcher": [
+                                "$gcc"
+                        ],
+                        "group": "build"
+                }
+        ]
+}
