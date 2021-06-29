@@ -220,7 +220,7 @@ class HBNBCommand(cmd.Cmd):
                         for att, value in json.loads(modpara).items():
                             args = "{} {} {}".format(id, att, value)
                             formatCommande = self.__format_command(className,
-                                    command, args)
+                                  command, args)
                             eval(formatCommande)
                         return
                     else:
