@@ -264,10 +264,14 @@ class HBNBCommand(cmd.Cmd):
         
 
     def __get_paramet(self, line):
-        rgex = "^(\"[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}\")\, ?(.*)$"
-        regex_prog = re.compile(rgex)
-        res = regex_prog.findall(line)
-        return res[0]
+        try:
+            rgex = "^(.*)((\,)?)?(.*)$"
+            regex_prog = re.compile(rgex)
+            res = regex_prog.findall(line)
+            return res[0][0], res[0][3]
+        except:
+            print("** instance id missing **")
+            return False
 
     def help_EOF(self):
         print("\n\tEOF command to exit the program\n")
