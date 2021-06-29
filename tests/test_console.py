@@ -153,15 +153,6 @@ class ConsoleTest(unittest.TestCase):
                 self.__allObjectSpace(className)
                 self.__allObjectDot(className)
         
-        with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("create BaseModel")
-        id = f.getvalue()
-        with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("BaseModel.all")
-            self.assertIn("BaseModel", f.getvalue())
-        with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("destroy BaseModel {}".format(id))
-        
     
     def __allObjectSpace(self, className):
         with patch('sys.stdout', new=StringIO()) as f:
@@ -178,7 +169,7 @@ class ConsoleTest(unittest.TestCase):
             HBNBCommand().onecmd("create {}".format(className))
         id = f.getvalue()
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("{}.all".format(className))
+            HBNBCommand().onecmd("{}.all()".format(className))
             self.assertIn("{}".format(className), f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("destroy {} {}".format(className, id))
