@@ -129,6 +129,22 @@ class ConsoleTest(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("count User")
             self.assertEqual(f.getvalue(), "0\n")
+        
+        for className in self.__classes:
+            self.__countObjectDot(className)
+    
+    def __countObjectDot(self, className):
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("{}.count()".format(className))
+        count = int(f.getvalue())
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("create {}".format(className))
+        id = f.getvalue()
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("{}.count()".format(className))
+        self.assertEqual(f.getvalue(), str(count + 1) + "\n")
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("destroy {} {}".format(className, id))
 
     def testDoShow(self):
         with patch('sys.stdout', new=StringIO()) as f:
@@ -152,8 +168,7 @@ class ConsoleTest(unittest.TestCase):
             for className in self.__classes:
                 self.__allObjectSpace(className)
                 self.__allObjectDot(className)
-        
-    
+  
     def __allObjectSpace(self, className):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("create {}".format(className))
