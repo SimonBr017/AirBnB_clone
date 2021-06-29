@@ -128,7 +128,7 @@ class ConsoleTest(unittest.TestCase):
             self.assertEqual(f.getvalue(), "** class doesn't exist **\n")
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("count User")
-            self.assertEqual(f.getvalue(), "2\n")
+            self.assertEqual(f.getvalue(), "0\n")
 
     def testDoShow(self):
         with patch('sys.stdout', new=StringIO()) as f:
@@ -148,12 +148,17 @@ class ConsoleTest(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("all Continent")
             self.assertEqual(f.getvalue(), "** class doesn't exist **\n")
+
+            for className in self.__classes:
+                self.__createObject(className)
+        
+    
+    def __allObject(self, className):
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("create User")
+            HBNBCommand().onecmd("create {}".format(className))
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("all User")
-            self.assertIn("User", f.getvalue())
-            self.assertNotIn("BaseModel", f.getvalue())
+            HBNBCommand().onecmd("all {}".format(className))
+            self.assertIn("{}".format(className), f.getvalue())
 
     def testDoDestroy(self):
         with patch('sys.stdout', new=StringIO()) as f:
