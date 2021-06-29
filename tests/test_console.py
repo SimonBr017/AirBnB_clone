@@ -269,6 +269,10 @@ class ConsoleTest(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("{}.update(\"{}\", \"{}\", \"{}\")"
                             .format(className, id, attrName, strValue))
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("{}.show(\"{}\")".format(className, id))
+            self.assertEqual(obj.__str__(), f.getvalue().strip())
+        
 
     def __getUuid4(self, string):
         regex = "([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-"\
