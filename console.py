@@ -4,7 +4,6 @@ entry point of the command interpreter.
 """
 import os
 import time
-from colorama import Fore, Style
 import cmd
 from models.base_model import BaseModel
 from models.user import User
@@ -268,8 +267,7 @@ class HBNBCommand(cmd.Cmd):
             parameters = res[0]
             return parameters[0], parameters[3]
         except:
-            print("** instance id missing **")
-            return False
+            return '', ''
 
     def help_EOF(self):
         print("\n\tEOF command to exit the program\n")

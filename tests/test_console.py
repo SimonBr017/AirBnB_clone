@@ -10,7 +10,6 @@ from console import HBNBCommand
 from io import StringIO
 from models import storage
 from unittest.mock import patch
-from colorama import Fore, Style
 import re
 
 
@@ -256,6 +255,20 @@ class ConsoleTest(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("update User ID")
             self.assertEqual(f.getvalue(), "** no instance found **\n")
+
+        for className in self.__classes:
+            self.__updateObjectDot(className)
+    
+    def __updateObjectDot(self, className):
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("create {}".format(className))
+        id = f.getvalue().strip()
+        obj = storage.all()["{}.{}".format(className, id)]
+        attrName = "first_name"
+        strValue = "John"
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("{}.update(\"{}\", \"{}\", \"{}\")"
+                            .format(className, id, attrName, strValue))
 
     def __getUuid4(self, string):
         regex = "([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-"\
