@@ -5,7 +5,6 @@ Test User class
 from models import user
 from models.base_model import BaseModel
 import unittest
-
 User = user.User
 
 class TestUser(unittest.TestCase):
