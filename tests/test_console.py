@@ -214,6 +214,16 @@ class ConsoleTest(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("destroy User {}".format(id))
             self.assertEqual(f.getvalue(), "** no instance found **\n")
+        
+        for className in self.__classes:
+            self.__destroyObjectDot(className)
+        
+    def __destroyObjectDot(self, className):
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("create {}".format(className))
+        id = f.getvalue()
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("{}.destroy({})".format(className, id))
 
     def testDoUpdate(self):
         with patch('sys.stdout', new=StringIO()) as f:
