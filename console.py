@@ -37,7 +37,7 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         pass
-            
+
     def do_create(self, args):
         """
         Creates a new instance of BaseModel,
@@ -148,7 +148,6 @@ class HBNBCommand(cmd.Cmd):
 
             new_dict = storage.all()
             key = args_list[0] + "." + args_list[1]
-            
 
             if key not in new_dict:
                 raise ValueError("** no instance found **")
@@ -163,7 +162,7 @@ class HBNBCommand(cmd.Cmd):
                 args_list[3] = '"' + args_list[3]
             if args_list[3][-1] != '"':
                 args_list[3] = args_list[3] + '"'
-            
+
             if args_list[2] not in ("id", "created_at", "updated_at"):
                 setattr(obj, args_list[2], args_list[3][1:-1])
                 storage.save()
@@ -217,11 +216,11 @@ class HBNBCommand(cmd.Cmd):
                     paramet = self.__get_paramet(arguments)
                     id = self.__clean_parameter(paramet[0])
                     if self.__Verif_json(paramet[1]):
-                        modified_paramet_1 = paramet[1].replace("'", '"')
-                        
-                        for att, value in json.loads(modified_paramet_1).items():
+                        modpara = paramet[1].replace("'", '"')
+                        for att, value in json.loads(modpara).items():
                             args = "{} {} {}".format(id, att, value)
-                            formatCommande = self.__format_command(className, command, args)
+                            formatCommande = self.__format_command(className,
+command, args)
                             eval(formatCommande)
                         return
                     else:
@@ -250,10 +249,10 @@ class HBNBCommand(cmd.Cmd):
         parameter = parameter.replace(',', ' ')
         parameter = parameter.replace(', ', ' ')
         return parameter
-        
+
     def __format_command(self, className, comm, arg):
         return "self.do_{}(\"{} {}\")".format(comm, className, arg)
-        
+
     def __Verif_json(self, paramet):
         paramet = paramet.replace("'", '"')
         try:
@@ -261,7 +260,6 @@ class HBNBCommand(cmd.Cmd):
         except ValueError as e:
             return False
         return True
-        
 
     def __get_paramet(self, line):
         try:
@@ -296,11 +294,12 @@ class HBNBCommand(cmd.Cmd):
         print("\n\tDeletes an instance based on the className and ID.\n")
 
     def help_update(self):
-        print("\n\tUpdates an instance based on the className "\
+        print("\n\tUpdates an instance based on the className "
               "and ID by adding or updating attribute.\n")
 
     def help_count(self):
         print("\n\tRetrieve the number of instances of a class.\n")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
