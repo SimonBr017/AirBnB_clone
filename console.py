@@ -219,9 +219,8 @@ class HBNBCommand(cmd.Cmd):
                         modpara = paramet[1].replace("'", '"')
                         for att, value in json.loads(modpara).items():
                             args = "{} {} {}".format(id, att, value)
-                            formatCommande = self.__format_command(className,
-                                  command, args)
-                            eval(formatCommande)
+                            fomtCom = self.__fomtCom(className, command, args)
+                            eval(fomtCom)
                         return
                     else:
                         arguments = self.__clean_parameter(arguments)
@@ -250,7 +249,7 @@ class HBNBCommand(cmd.Cmd):
         parameter = parameter.replace(', ', ' ')
         return parameter
 
-    def __format_command(self, className, comm, arg):
+    def __fomtCom(self, className, comm, arg):
         return "self.do_{}(\"{} {}\")".format(comm, className, arg)
 
     def __Verif_json(self, paramet):
