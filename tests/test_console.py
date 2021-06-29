@@ -129,7 +129,7 @@ class ConsoleTest(unittest.TestCase):
             self.assertEqual(f.getvalue(), "** class doesn't exist **\n")
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("count User")
-            self.assertEqual(f.getvalue(), "1\n")
+            self.assertEqual(f.getvalue(), "2\n")
     
     def testDoShow(self):
         with patch('sys.stdout', new=StringIO()) as f:
