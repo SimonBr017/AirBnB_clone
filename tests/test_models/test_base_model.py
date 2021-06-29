@@ -68,25 +68,3 @@ class BaseModelTest(unittest.TestCase):
         b1 = BaseModel()
         string = "[BaseModel] ({}) {}".format(b1.id, b1.__dict__)
         self.assertEqual(string, str(b1))
-    """
-    def testFileStorage_file_path:
-        
-    def testFileStorage_objects:
-        
-    def testFileStorage__all:
-        
-    def testFileStorage__new:
-    """
-    @mock.patch('models.storage')
-    def testFileStorage__save(self, mock_storage):
-        b1 = BaseModel()
-        old_cre = b1.created_at
-        old_upd= b1.updated_at
-        b1.save()
-        new_crea = b1.created_at
-        new_upd = b1.updated_at
-        self.assertNotEqual(old_upd, new_upd)
-        self.assertEqual(old_cre, new_crea)
-        self.assertFalse(mock_storage.save.called)
-    
-    #def testFileStorage__reload:
