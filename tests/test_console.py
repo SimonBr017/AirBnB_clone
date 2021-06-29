@@ -127,7 +127,7 @@ class ConsoleTest(unittest.TestCase):
             self.assertEqual(f.getvalue(), "** class doesn't exist **\n")
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("count User")
-            self.assertEqual(f.getvalue(), "0\n")
+            self.assertEqual(f.getvalue(), "2\n")
         
         for className in self.__classes:
             self.__countObjectDot(className)
