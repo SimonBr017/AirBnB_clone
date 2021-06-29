@@ -139,7 +139,7 @@ class ConsoleTest(unittest.TestCase):
         count = int(f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("create {}".format(className))
-        id = f.getvalue()
+        id = f.getvalue().strip()
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("{}.count()".format(className))
         self.assertEqual(f.getvalue(), str(count + 1) + "\n")
@@ -182,7 +182,7 @@ class ConsoleTest(unittest.TestCase):
     def __allObjectDot(self, className):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("create {}".format(className))
-        id = f.getvalue()
+        id = f.getvalue().strip()
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("{}.all()".format(className))
             self.assertIn("{}".format(className), f.getvalue())
@@ -221,9 +221,15 @@ class ConsoleTest(unittest.TestCase):
     def __destroyObjectDot(self, className):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("create {}".format(className))
-        id = f.getvalue()
+        id = f.getvalue().strip()
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd("{}.destroy({})".format(className, id))
+            HBNBCommand().onecmd("{}.destroy(\"{}\")".format(className, id))
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("show User {}".format(id))
+            self.assertEqual(f.getvalue(), "** no instance found **\n")
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("{}.destroy(\"{}\")".format(className, id))
+            self.assertEqual(f.getvalue(), "** no instance found **\n")
 
     def testDoUpdate(self):
         with patch('sys.stdout', new=StringIO()) as f:
