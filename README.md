@@ -1,6 +1,6 @@
 # AirBnB clone - The console
 
-![alt text](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUWMNL5ANN%2F20210630%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210630T121423Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=b8727e0005f1235528803a0283610f3822e2977746c3fc52b05110cd3463af64)
+![alt text](https://camo.githubusercontent.com/59589bd21e8ec09ef94f2d9bb80d36d144bc487fe4737f8b213d005f3273921b/68747470733a2f2f696d6775722e636f6d2f4f696c457358562e706e67)
 
 ## Description
 
@@ -57,22 +57,22 @@ There is another way to call functions, here a little example :
 **Here we call the count function to know the number of instances, using the \<className\>.count we will obtain the number of instances of the specified class**
 ## Commands list
 
-- <span style="color:IndianRed">help \<Cmd\></span> : Using help without arguments will print all the documented commands. Using with specified command, it will print what the command does.
-- <span style="color:IndianRed">create \<className\></span> : Creates a new instance of \<className\>, saves it to the JSON file and prints the \<ID\>.
-- <span style="color:IndianRed">show \<className\> \<ID\></span> : Prints the string representation of an instance based on the \<className\> and \<ID\>.
-- <span style="color:IndianRed">all \<className\></span> : Prints all string representation of all instances based or not on the \<className\>, can be used without \<className\>.
-- <span style="color:IndianRed">destroy \<className\> \<ID\></span> : Deletes an instance based on the \<className\> and \<ID\>.
-- <span style="color:IndianRed">update \<className\> \<ID\> \<attributeName\> \<attribueValue\></span> : Updates an instance based on the \<className\> and \<ID\> by adding or updating attributes.
-- <span style="color:IndianRed">count \<className\></span> : Retrieve the number of instances of \<className\>.
+- **help \<Cmd\>** : Using help without arguments will print all the documented commands. Using with specified command, it will print what the command does.
+- **create \<className\>** : Creates a new instance of \<className\>, saves it to the JSON file and prints the \<ID\>.
+- **show \<className\> \<ID\>** : Prints the string representation of an instance based on the \<className\> and \<ID\>.
+- **all \<className\>**: Prints all string representation of all instances based or not on the \<className\>, can be used without \<className\>.
+- **destroy \<className\> \<ID\>** : Deletes an instance based on the \<className\> and \<ID\>.
+- **update \<className\> \<ID\> \<attributeName\> \<attribueValue\>** : Updates an instance based on the \<className\> and \<ID\> by adding or updating attributes.
+- **count \<className\>** : Retrieve the number of instances of \<className\>.
 
 Functions that can be called using \<className\>.\<Cmd\> format :
 
-- <span style="color:IndianRed"> User.show(\<ID\>)</span>
-- <span style="color:IndianRed"> User.all()</span>
-- <span style="color:IndianRed"> User.count()</span>
-- <span style="color:IndianRed"> User.destroy(\<ID\>)</span>
-- <span style="color:IndianRed"> User.update(\<ID\>, \<attributeName\>, \<attributeValue\>)</span>
-- <span style="color:IndianRed"> User.update(\<ID\>, \<dictionaryRepresentation\>)</span>
+-  **User.show(\<ID\>)**
+-  **User.all()**
+-  **User.count()**
+-  **User.destroy(\<ID\>)**
+-  **User.update(\<ID\>, \<attributeName\>, \<attributeValue\>)**
+-  **User.update(\<ID\>, \<dictionaryRepresentation\>)**
 
 ## Authors
 
