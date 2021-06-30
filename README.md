@@ -18,11 +18,11 @@ git clone https://github.com/SimonBr017/AirBnB_clone.git
 Using the console is quite simple, all you need to do is launch the python script this way :
 
 For non-interactive mode :
-```python
+```bash
 echo "help EOF" | ./console.py
 ```
 For interactive mode :
-```python
+```bash
 ./console.py
 ```
 
@@ -30,19 +30,19 @@ For interactive mode :
 
 After launching the console, you will be able to call any function that is implemented (see section below), here some examples :
 
-```python
+```
 (hbnb) create User
 48f6153b-bb95-4249-880a-1a2ef9952f5c
 ```
 **Here we create one User instance, generating it's ID at the same time**
 
-```python
+```
 (hbnb) all
 ["[User] (48f6153b-bb95-4249-880a-1a2ef9952f5c) {'id': '48f6153b-bb95-4249-880a-1a2ef9952f5c', 'created_at': datetime.datetime(2021, 6, 30, 14, 39, 23, 915529), 'updated_at': datetime.datetime(2021, 6, 30, 14, 39, 23, 915541)}"]
 ```
 **Using the all function without argument, we print all the existing instances**
 
-```python
+```
 (hbnb) update User 48f6153b-bb95-4249-880a-1a2ef9952f5c first_name "Betty"
 [User] (48f6153b-bb95-4249-880a-1a2ef9952f5c) {'id': '48f6153b-bb95-4249-880a-1a2ef9952f5c', 'created_at': datetime.datetime(2021, 6, 30, 14, 39, 23, 915529), 'updated_at': datetime.datetime(2021, 6, 30, 14, 39, 23, 915541), 'first_name': 'Betty'}
 ```
@@ -50,7 +50,7 @@ After launching the console, you will be able to call any function that is imple
 
 There is another way to call functions, here a little example :
 
-```python
+```
 (hbnb) User.count()
 1
 ```
