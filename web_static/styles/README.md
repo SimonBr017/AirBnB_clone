@@ -1,0 +1,1 @@
+Css style for web static AirBnB clone
