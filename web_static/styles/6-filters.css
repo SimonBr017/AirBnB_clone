@@ -4,6 +4,7 @@ section.filters {
 	width: 100%;
 	border: 1px solid #DDDDDD;
 	border-radius: 4px;
+	position: relative;
 }
 
 section.filters button {
@@ -51,7 +52,7 @@ section.filters .amenities h4 {
 	margin: 2px 50px;
 }
 
-section.filters .locations .popover {
+section.filters div .popover {
 	visibility: hidden;
 	padding-top: 10px;
 	padding-bottom: 40px;
@@ -65,19 +66,14 @@ section.filters .locations .popover {
 	border-radius: 4px;
 	list-style-type: none;
 	position: relative;
+	z-index: 1;
 }
 
 section.filters .amenities .popover {
-	visibility: hidden;
-	padding-top: 30px;
-	padding-bottom: 30px;
-	margin-top: 17px;
+
 	margin-left: 1px;
-	background-color: #FAFAFA;
-	border: 1px solid #DDDDDD;
-	border-radius: 4px;
-	list-style-type: none;
-	position: relative;
+
+
 }
 
 section.filters .locations:hover .popover,
