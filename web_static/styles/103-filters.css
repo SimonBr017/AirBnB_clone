@@ -92,3 +92,46 @@ section.filters div .popover li {
     padding-bottom: 4px;
     font-size: 13px;
 }
+
+@media screen and (max-width: 864px) {
+    section.filters div .popover {
+        top: 1px;
+    }
+    section.filters button {
+        font-size: 18px;
+        height: 20%;
+        width: 50%;
+        border: none;
+        border-radius: 4px;
+        position: relative;
+        margin: 0px auto 0px auto;
+        display: block;
+        right: 0;
+    }
+    section.filters .locations,
+    section.filters .amenities {
+        position: absolute;
+        margin: 0px auto 0px auto;
+        height: 65%;
+        width: 50%;
+        top: 36px;
+    }
+    section.filters .amenities {
+        left: 50%;
+    }
+    section.filters {
+        height: 107px;
+    }
+}
+
+@media screen and (max-width: 432px) {
+    section.filters .locations .popover {
+        margin-top: -1px;
+    }
+}
+
+@media screen and (max-width: 409px) {
+    section.filters .amenities .popover {
+        margin-top: -1px;
+    }
+}

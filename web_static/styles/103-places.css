@@ -128,3 +128,85 @@ div.reviews h2 {
     font-size: 12px;
     margin-top: 5px;
 }
+
+@media screen and (max-width: 920px) {
+    .description {
+        font-size: 16px;
+    }
+    .reviews p {
+        font-size: 14px;
+    }
+    .reviews h3 {
+        font-size: 16px;
+    }
+    div.amenities h2,
+    div.reviews h2 {
+        font-size: 18px;
+    }
+    .amenities img {
+        height: 30px;
+    }
+}
+
+@media screen and (max-width: 820px) {
+    .description {
+        font-size: 18px;
+    }
+    .reviews p {
+        font-size: 16px;
+    }
+    .reviews h3 {
+        font-size: 18px;
+    }
+    div.amenities h2,
+    div.reviews h2 {
+        font-size: 20px;
+    }
+    .amenities img {
+        height: 40px;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .description {
+        font-size: 20px;
+    }
+    .reviews p {
+        font-size: 18px;
+    }
+    .reviews h3 {
+        font-size: 20px;
+    }
+    div.amenities h2,
+    div.reviews h2 {
+        font-size: 22px;
+    }
+    .amenities img {
+        height: 50px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .description {
+        font-size: 22px;
+    }
+    .reviews p {
+        font-size: 20px;
+    }
+    .reviews h3 {
+        font-size: 22px;
+    }
+    div.amenities h2,
+    div.reviews h2 {
+        font-size: 24px;
+    }
+    .amenities img {
+        height: 60px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .places h1 {
+        text-align: center;
+    }
+}
