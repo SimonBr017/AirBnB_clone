@@ -8,7 +8,7 @@ section.filters {
 }
 
 section.filters button {
-    background-color: #FF5A5F;
+    background-color: #DDDDDD;
     font-size: 18px;
     color: black;
     height: 48px;
@@ -18,10 +18,13 @@ section.filters button {
     position: absolute;
     right: 30px;
     top: 11px;
+    transition: 0.5s;
 }
 
 section.filters button:hover {
     opacity: 90%;
+    background-color: #FF5A5F;
+    color: #FFFFFF;
 }
 
 section.filters .locations,

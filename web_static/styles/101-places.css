@@ -128,3 +128,7 @@ div.reviews h2 {
     font-size: 12px;
     margin-top: 5px;
 }
+
+footer {
+    position: relative;
+}
