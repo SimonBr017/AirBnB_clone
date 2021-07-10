@@ -66,6 +66,7 @@ section.filters div .popover {
     background-color: #FAFAFA;
     margin-left: -1px;
     border: 1px solid #DDDDDD;
+    box-shadow: 6px 3px 3px rgb(112, 112, 112);
     border-radius: 4px;
     list-style-type: none;
     position: relative;
